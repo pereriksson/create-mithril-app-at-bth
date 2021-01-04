@@ -1,0 +1,25 @@
+{
+  "name": "create-mithril-app-at-bth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "create-mithril-app-at-bth": "download.sh"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pereriksson/create-mithril-app-at-bth.git"
+  },
+  "author": "Per Eriksson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pereriksson/create-mithril-app-at-bth/issues"
+  },
+  "homepage": "https://github.com/pereriksson/create-mithril-app-at-bth#readme",
+  "dependencies": {
+    "adm-zip": "^0.5.1"
+  }
+}
