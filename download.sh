@@ -7,3 +7,5 @@ wget $URL -O master.zip
 unzip "master.zip"
 
 mv create-mithril-app-master $1
+
+rm master.zip
