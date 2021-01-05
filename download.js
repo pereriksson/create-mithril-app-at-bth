@@ -7,6 +7,7 @@ const extract = require('extract-zip');
 const args = process.argv;
 
 const downloadRepo = async () => {
+    console.log("1");
     const url = "https://codeload.github.com/pereriksson/create-mithril-app/zip/master";
     const res = await axios({
         url,
@@ -14,10 +15,12 @@ const downloadRepo = async () => {
         responseType: 'stream'
     });
 
+    console.log("2");
     const p = path.resolve(__dirname, 'master.zip');
     const writer = fs.createWriteStream(p);
     res.data.pipe(writer);
 
+    console.log("3");
     return new Promise((resolve, reject) => {
         writer.on('finish', resolve);
         writer.on('error', reject);
@@ -34,8 +37,11 @@ const remove = () => {
 }
 
 const createProject = async() => {
+    console.log("a");
     await downloadRepo();
+    console.log("s");
     await unzip();
+    console.log("d");
     remove();
 }
 
@@ -44,6 +50,6 @@ createProject()
         console.log("Project has been created.")
     })
     .catch((e) => {
-        console.log("An error occured.")
+        console.log("An error occurred.")
         throw(e);
     });
