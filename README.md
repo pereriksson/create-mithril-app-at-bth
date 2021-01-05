@@ -1,6 +1,6 @@
-# Create Mithril App at Blekinge Institute of Technology
+# Create Mithril App at BTH
 
-This repo provides a convenient way to download the `pereriksson/create-mithril-app` rep and create a local project.
+This repo provides a convenient way to download the `pereriksson/create-mithril-app` repo and create a local project. It was developed to be a practical tool at Blekinge Institute of Technology.
 
 ## Usage
 
