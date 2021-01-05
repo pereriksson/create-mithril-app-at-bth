@@ -6,8 +6,17 @@ const axios = require('axios');
 const extract = require('extract-zip');
 const args = process.argv;
 
+if (!args[2]) {
+    console.log("Usage: npx pereriksson/create-mithril-app-at-bth PROJECT_NAME");
+    console.log("Exiting...");
+    process.exit(0);
+}
+
+const absoluteArchivePath = path.resolve(__dirname, 'master.zip');
+const absoluteFolderPath = path.resolve(__dirname, 'create-mithril-app-master');
+const absoluteTargetPath = path.resolve(process.cwd(), args[2]);
+
 const downloadRepo = async () => {
-    console.log("1");
     const url = "https://codeload.github.com/pereriksson/create-mithril-app/zip/master";
     const res = await axios({
         url,
@@ -15,33 +24,31 @@ const downloadRepo = async () => {
         responseType: 'stream'
     });
 
-    console.log("2");
-    const p = path.resolve(__dirname, 'master.zip');
-    const writer = fs.createWriteStream(p);
+    const writer = fs.createWriteStream(absoluteArchivePath);
     res.data.pipe(writer);
 
-    console.log("3");
     return new Promise((resolve, reject) => {
-        writer.on('finish', resolve);
-        writer.on('error', reject);
+        writer.on('finish', (i) => {
+            resolve();
+        });
+        writer.on('error', (i) => {
+            reject();
+        });
     })
 }
 
 const unzip = async () => {
-    await extract("master.zip", { dir: __dirname });
+    await extract(absoluteArchivePath, { dir: __dirname });
 }
 
 const remove = () => {
-    fs.unlink("master.zip", () => {});
-    fs.rename("create-mithril-app-master", args[2], () => {});
+    fs.unlink(absoluteArchivePath, () => {});
+    fs.rename(absoluteFolderPath, absoluteTargetPath, () => {});
 }
 
 const createProject = async() => {
-    console.log("a");
     await downloadRepo();
-    console.log("s");
     await unzip();
-    console.log("d");
     remove();
 }
 
@@ -51,5 +58,4 @@ createProject()
     })
     .catch((e) => {
         console.log("An error occurred.")
-        throw(e);
     });
