@@ -45,5 +45,5 @@ createProject()
     })
     .catch((e) => {
         console.log("An error occured.")
-        console.log(e);
+        throw(e);
     });
