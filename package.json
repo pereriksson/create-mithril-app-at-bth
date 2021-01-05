@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/pereriksson/create-mithril-app-at-bth#readme",
   "dependencies": {
-    "adm-zip": "^0.5.1"
+    "axios": "^0.21.1",
+    "extract-zip": "^2.0.1"
   }
 }
